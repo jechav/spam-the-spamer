@@ -5,7 +5,7 @@
   "main": "bcol.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "cy:run": "cypress run --browser chrome",
+    "cy:run": "ELECTRON_EXTRA_LAUNCH_ARGS=disable-features=OutOfBlinkCors cypress run",
     "cy:open": "cypress open"
   },
   "keywords": [],

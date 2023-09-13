@@ -97,6 +97,11 @@ describe("Fake bcol", () => {
   it("open page", () => {
     cy.visit("https://act01.info");
     cy.get(".elementor-button.elementor-button-link").first().click();
+    cy.get("pre")
+      .contains("This deployment is currently paused.")
+      .should("not.exist");
+    cy.get("pre").contains("Not Found").should("not.exist");
+
     cy.window().then(async (w) => {
       const id = await send(w);
       cy.log(id);

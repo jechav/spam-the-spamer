@@ -1,4 +1,6 @@
 #!/bin/sh
+# every 1 hour 
+# 0 * * * * bash run-global-sura.sh >> /var/log/run-global-sura.log 2>&1
 #
 
 cd $(dirname $0)

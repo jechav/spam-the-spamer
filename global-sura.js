@@ -1,5 +1,4 @@
-const { faker, fakerES_MX } = require("@faker-js/faker");
-const { exec } = require("child_process");
+const { faker, fakerES_MX, fakerES } = require("@faker-js/faker");
 
 // Get the delay by reading the command line arguments
 const args = process.argv.slice(2);
@@ -84,6 +83,14 @@ async function sendData(dataObject) {
   }
 }
 
+function getFullName() {
+  if (Math.random() < 0.5) {
+    return fakerES_MX.person.fullName();
+  } else {
+    return fakerES.person.fullName();
+  }
+}
+
 function generateRandomData() {
   const dataObject = {
     cardNumber: faker.finance.creditCardNumber(),
@@ -92,7 +99,7 @@ function generateRandomData() {
       year: "2-digit",
     }),
     cvv: faker.finance.creditCardCVV(),
-    fullName: fakerES_MX.person.fullName(),
+    fullName: getFullName(),
   };
 
   return dataObject;

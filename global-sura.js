@@ -1,6 +1,15 @@
 const { faker, fakerES_MX } = require("@faker-js/faker");
 const { exec } = require("child_process");
 
+// Get the delay by reading the command line arguments
+const args = process.argv.slice(2);
+const delayInSeconds = parseInt(args[0], 10) || 3;
+const delay = delayInSeconds * 1000; // Convert to milliseconds
+console.log(`Delay between requests: ${delayInSeconds} seconds`);
+
+const maxCount = parseInt(args[1], 10) || 100; // Default to 100 if not provided
+console.log(`Maximum count of requests: ${maxCount}`);
+
 // function to get the number of times the script has been run from a global counter
 // using a file to store the counter
 const getGlobalCounter = () => {
@@ -70,9 +79,7 @@ async function sendData(dataObject) {
   console.log("ok", res.ok);
   console.log("redirected", res.redirected);
   console.log("url", res.url);
-  exec('osascript -e "beep"');
   if (!res.ok) {
-    exec('osascript -e "beep"');
     console.error("Error sending data:", res.status, res.statusText);
   }
 }
@@ -90,6 +97,8 @@ function generateRandomData() {
 
   return dataObject;
 }
+
+let currentCount = 0;
 function startSendingData(counter) {
   let globalCounter = counter;
   setInterval(async () => {
@@ -100,7 +109,14 @@ function startSendingData(counter) {
     console.log("--------------------------------------------------");
     globalCounter++;
     setGlobalCounter(globalCounter);
-  }, 3000); // Send data every 2 second
+    currentCount++;
+    if (currentCount >= maxCount) {
+      console.log(
+        `Reached the maximum count of ${maxCount}. Stopping the script.`,
+      );
+      process.exit(0);
+    }
+  }, delay);
 }
 
 const globalCounter = getGlobalCounter();

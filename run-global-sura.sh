@@ -7,7 +7,13 @@
 cd $(dirname $0)
 
 echo "Running global sura script"
-# Run the global sura script
-/root/.nvm/versions/node/v24.20.0/bin/npm run global-sura 3 10
+echo "Current directory: $(pwd)"
+
+# get npm path
+NPM_PATH=$(which npm)
+echo "NPM path: $NPM_PATH"
+
+# Run the global sura script and get the output
+npm run global-sura 3 10 >> $HOME/global-sura.log 2>&1
 
 echo "Global sura script completed"

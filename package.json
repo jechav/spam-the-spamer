@@ -1,0 +1,23 @@
+{
+  "name": "spam-the-spamer",
+  "version": "1.0.0",
+  "description": "```bash pip3 install Fake pip3 install requests ```",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "global-sura": "node global-sura.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jechav/spam-the-spamer.git"
+  },
+  "keywords": [],
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/jechav/spam-the-spamer/issues"
+  },
+  "homepage": "https://github.com/jechav/spam-the-spamer#readme",
+  "devDependencies": {
+    "@faker-js/faker": "^10.6.0"
+  }
+}

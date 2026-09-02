@@ -11,7 +11,7 @@ export PATH="/root/.nvm/versions/node/v24.20.0/bin:$PATH"
 echo "Running global sura script"
 echo "Current directory: $(pwd)"
 
-TIMES_RUN=$((RANDOM % 3 + 3)) # Between 3 and 5 times
+TIMES_RUN=$((RANDOM % 8 + 3)) # Between 3 and 10 times
 echo "Times to run: $TIMES_RUN"
 SLEEP_TIME=$((RANDOM % 21 + 20)) # Between 20 and 40 seconds
 echo "Sleep time between runs: $SLEEP_TIME seconds"
@@ -26,7 +26,7 @@ for i in $(seq 1 $TIMES_RUN); do
   sleep $SLEEP_TIME
   echo "Running global sura iteration $i"
   DELAY_TIME=$((RANDOM % 3 + 1)) # Between 1 and 3 seconds
-  npm run global-sura $DELAY_TIME 120
+  npm run global-sura $DELAY_TIME 80
 done
 
 current_time=$(date "+%Y-%m-%d %H:%M:%S")

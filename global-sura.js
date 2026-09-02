@@ -74,7 +74,7 @@ async function sendData(dataObject) {
 
   // const responseText = await res.text();
   // console.log("responseText", responseText);
-  console.log("headers", res.headers);
+  // console.log("headers", res.headers);
   console.log("status", res.status);
   console.log("ok", res.ok);
   console.log("redirected", res.redirected);
@@ -103,7 +103,10 @@ function startSendingData(counter) {
   let globalCounter = counter;
   setInterval(async () => {
     const dataObject = generateRandomData();
-    console.log("Sending:", dataObject, `(Count: ${globalCounter})`);
+    console.log("Sending:", dataObject);
+    console.log(
+      `Global Counter: ${globalCounter}, Current Count: ${currentCount + 1}`,
+    );
     await sendData(dataObject);
     console.log("Waiting for 2 seconds before sending the next data...");
     console.log("--------------------------------------------------");

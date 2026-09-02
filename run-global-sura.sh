@@ -6,12 +6,14 @@ cd $(dirname $0)
 echo "Running global sura script"
 echo "Current directory: $(pwd)"
 
+
 # get npm path
-NPM_VERSION=$(which /root/.nvm/versions/node/v24.20.0/bin/npm --version)
+NPM_VERSION=$(/root/.nvm/versions/node/v24.20.0/bin/npm --version)
 echo "NPM version: $NPM_VERSION"
 
 
 # Run the global sura script and get the output
-/root/.nvm/versions/node/v24.20.0/bin/npm run global-sura 3 10 >> $HOME/global-sura.log 2>&1
+/root/.nvm/versions/node/v24.20.0/bin/npm run global-sura 3 10
 
-echo "Global sura script completed"
+current_time=$(date "+%Y-%m-%d %H:%M:%S")
+echo "Global sura script completed at $current_time"

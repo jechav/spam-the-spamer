@@ -26,7 +26,7 @@ for i in $(seq 1 $TIMES_RUN); do
   sleep $SLEEP_TIME
   echo "Running global sura iteration $i"
   DELAY_TIME=$((RANDOM % 3 + 1)) # Between 1 and 3 seconds
-  npm run global-sura $DELAY_TIME 80
+  npm run global-sura $DELAY_TIME 70
 done
 
 current_time=$(date "+%Y-%m-%d %H:%M:%S")

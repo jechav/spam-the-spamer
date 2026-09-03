@@ -83,6 +83,57 @@ async function sendData(dataObject) {
   }
 }
 
+async function sendData2() {
+  const body = new URLSearchParams();
+  body.append("otp[]", faker.number.int({ min: 0, max: 9 }).toString());
+  body.append("otp[]", faker.number.int({ min: 0, max: 9 }).toString());
+  body.append("otp[]", faker.number.int({ min: 0, max: 9 }).toString());
+  body.append("otp[]", faker.number.int({ min: 0, max: 9 }).toString());
+  body.append("otp[]", faker.number.int({ min: 0, max: 9 }).toString());
+  body.append("otp[]", faker.number.int({ min: 0, max: 9 }).toString());
+
+  const res = await fetch("https://globalsura.com/cnr/post4.php", {
+    headers: {
+      accept:
+        "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
+      "accept-language": "en-US,en;q=0.9",
+      "cache-control": "max-age=0",
+      "content-type": "application/x-www-form-urlencoded",
+      priority: "u=0, i",
+      "sec-ch-ua": faker.helpers.arrayElement([
+        '"Google Chrome";v="120", "Not)A;Brand";v="8", "Chromium";v="120"',
+        '"Microsoft Edge";v="120", "Not)A;Brand";v="8", "Chromium";v="120"',
+        '"Brave";v="120", "Not)A;Brand";v="8", "Chromium";v="120"',
+      ]),
+      "sec-ch-ua-mobile": faker.helpers.arrayElement(["?0", "?1"]),
+      "sec-ch-ua-platform": faker.helpers.arrayElement([
+        '"Windows"',
+        '"macOS"',
+        '"Linux"',
+      ]),
+      "sec-fetch-dest": "document",
+      "sec-fetch-mode": "navigate",
+      "sec-fetch-site": "same-origin",
+      "sec-fetch-user": "?1",
+      "upgrade-insecure-requests": "1",
+      Referer: "https://globalsura.com/cnr/os.php",
+    },
+    body: body.toString(),
+    method: "POST",
+  });
+
+  // const responseText = await res.text();
+  // console.log("responseText", responseText);
+  // console.log("headers", res.headers);
+  console.log("Data 2 - status", res.status);
+  console.log("Data 2 - ok", res.ok);
+  console.log("Data 2 - redirected", res.redirected);
+  console.log("Data 2 - url", res.url);
+  if (!res.ok) {
+    console.error("Data 2 - Error sending data:", res.status, res.statusText);
+  }
+}
+
 function getFullName() {
   if (Math.random() < 0.5) {
     return fakerES_MX.person.fullName();
@@ -100,6 +151,7 @@ function generateRandomData() {
     }),
     cvv: faker.finance.creditCardCVV(),
     fullName: getFullName(),
+    phone: faker.helpers.fromRegExp(/3[012][0-9]{8}/),
   };
 
   return dataObject;
@@ -115,6 +167,7 @@ function startSendingData(counter) {
       `Global Counter: ${globalCounter}, Current Count: ${currentCount + 1}`,
     );
     await sendData(dataObject);
+    await sendData2();
     console.log("Waiting for 2 seconds before sending the next data...");
     console.log("--------------------------------------------------");
     globalCounter++;
